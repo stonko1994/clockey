@@ -47,16 +47,16 @@ features                                  :
     description                           : Customize your game configuration. 2 halves, 3 periods, 4 quarters ... configure it based on the game you are playing.
     fontawesome_icon_name                 : pen
 
-  - title                                 : Unlimited player support
-    description                           :
-    fontawesome_icon_name                 : user
+  - title                                 : Drak/light mode
+    description                           : Drak and light mode support for best possible contrast even in an suny environment.
+    fontawesome_icon_name                 : sun
 
   - title                                 : Easy to use
-    description                           :
+    description                           : Intuitive User Interface but with support for pro user configuration.
     fontawesome_icon_name                 : star
 
   - title                                 : Free
-    description                           :
+    description                           : No account required. Ad free.
     fontawesome_icon_name                 : money-bill
 
 
