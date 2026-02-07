@@ -8,14 +8,16 @@
 					</clipPath>
 				</defs>
 			</svg>
+			{% assign header_icon = page.app_icon | default: site.app_icon %}
 			{% if page.url != '/' %}
-				<a href="../" target="_self"><img class="headerIcon" src="{{ site.app_icon | relative_url }}"></a>
+				<a href="../" target="_self"><img class="headerIcon" src="{{ header_icon | relative_url }}"></a>
 			{% else %}
-				<img class="headerIcon" src="{{ site.app_icon | relative_url }}">
+				<img class="headerIcon" src="{{ header_icon | relative_url }}">
 			{% endif %}
 			<div class="divider"></div>
 		</div>
-		<p class="headerName">{{ site.app_name }}</p>
+		{% assign header_name = page.app_name | default: site.app_name %}
+		<p class="headerName">{{ header_name }}</p>
 	</div>
 	<nav class="scroll">
 		<ul>

@@ -2,6 +2,9 @@
 layout: page
 title: Privacy Policy
 include_in_header: false
+app_name: Skyball
+app_icon: assets/skyball-appicon.png
+ios_app_id: 1631531243
 ---
 
 **Privacy Policy**
