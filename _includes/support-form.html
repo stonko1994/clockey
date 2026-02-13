@@ -1,0 +1,57 @@
+{% assign support_email = include.support_email | default: site.support_email | default: site.email_address %}
+{% assign support_app_name = include.app_name | default: page.app_name | default: site.app_name %}
+
+{% if support_email == blank %}
+> Please set `support_email` (or `email_address`) in `_config.yml` to enable this form.
+{% else %}
+<form id="support-form" class="supportForm" data-recipient="{{ support_email }}" target="_self">
+	<div class="supportField">
+		<label class="supportLabel" for="support-subject">Subject</label>
+		<input id="support-subject" class="supportInput" type="text" name="subject" required maxlength="120" placeholder="What can we help with?">
+	</div>
+	<div class="supportField">
+		<label class="supportLabel" for="support-description">Description</label>
+		<textarea id="support-description" class="supportTextarea" name="description" required placeholder="Please describe your issue or question."></textarea>
+	</div>
+	<button class="supportButton" type="submit">Send</button>
+</form>
+
+<p class="supportHelp">This opens your email app and addresses your message to <strong>{{ support_email }}</strong>.</p>
+<p id="support-status" class="supportStatus" role="status" aria-live="polite"></p>
+
+<script>
+	(function () {
+		var supportForm = document.getElementById("support-form");
+		if (!supportForm) {
+			return;
+		}
+
+		var supportStatus = document.getElementById("support-status");
+		var recipient = supportForm.getAttribute("data-recipient");
+		var appName = {{ support_app_name | jsonify }};
+
+		function setStatus(message, isError) {
+			supportStatus.textContent = message;
+			supportStatus.classList.toggle("supportError", Boolean(isError));
+		}
+
+		supportForm.addEventListener("submit", function (event) {
+			event.preventDefault();
+
+			var subject = document.getElementById("support-subject").value.trim();
+			var description = document.getElementById("support-description").value.trim();
+
+			if (!subject || !description) {
+				setStatus("Please add a subject and description before sending.", true);
+				return;
+			}
+
+			var body = ["App: " + appName, "", description].join("\n");
+			var mailtoLink = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+			setStatus("Opening your email app...", false);
+			window.location.href = mailtoLink;
+		});
+	})();
+</script>
+{% endif %}

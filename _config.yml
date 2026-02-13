@@ -24,6 +24,7 @@ your_name                                 : David Steinacher
 your_link                                 :
 your_city                                 :
 email_address                             :
+support_email                             : david_steinacher@hotmail.com              # Email address used by the Support page form. Falls back to email_address when left empty.
 facebook_username                         :
 instagram_username                        :
 twitter_username                          : stonko1994
